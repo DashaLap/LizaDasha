@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfApp28.Windows.MenuEmploeesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp28.Windows"
+        mc:Ignorable="d"
+        Title="MenuEmploeesWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image Source="\Resourse\ttt.jpg" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <TextBlock Text="Иванов Иван Иванович" Grid.Row="2" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Id: 00001" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" Foreground="Gray" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnReader" Content="Читатели" Grid.Row="3" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Background="Wheat" Click="btnReader_Click"/>
+        <Button x:Name="btnBook" Content="Книги" Grid.Row="4" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Background="Wheat" Click="btnBook_Click"/>
+        <Button x:Name="reportBtn" Content="Отчеты" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Background="Wheat" Click="reportBtn_Click"/>
+        <Button x:Name="exitBtn" Content="ВЫХОД" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Background="DarkRed" Foreground="White" Click="exitBtn_Click"/>
+        <Frame x:Name="menuFr" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="8"/>
+
+    </Grid>
+</Window>
