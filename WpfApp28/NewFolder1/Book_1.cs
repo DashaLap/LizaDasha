@@ -12,10 +12,10 @@ namespace WpfApp28.NewFolder1
     using System;
     using System.Collections.Generic;
     
-    public partial class Book
+    public partial class Book_1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Book()
+        public Book_1()
         {
             this.History_Reader_Ticket = new HashSet<History_Reader_Ticket>();
         }

@@ -27,8 +27,5 @@ namespace WpfApp28
             newFrame.NavigationService.Navigate(new PageS.Autorization_Page());
         }
     }
-     public class Connection
-    {
-        public static Bibl_dsrymarEntities bibliotrq = new Bibl_dsrymarEntities();
-    }
+     
 }

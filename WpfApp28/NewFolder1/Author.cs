@@ -17,15 +17,16 @@ namespace WpfApp28.NewFolder1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Author()
         {
-            this.Book = new HashSet<Book>();
+            this.Book_1 = new HashSet<Book_1>();
         }
     
         public int ID { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Middle_name { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book> Book { get; set; }
+        public virtual ICollection<Book_1> Book_1 { get; set; }
     }
 }

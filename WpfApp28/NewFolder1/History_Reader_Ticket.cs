@@ -20,8 +20,9 @@ namespace WpfApp28.NewFolder1
         public Nullable<System.DateTime> Date_Start { get; set; }
         public Nullable<int> Date_End { get; set; }
         public string Comment { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
-        public virtual Book Book { get; set; }
+        public virtual Book_1 Book_1 { get; set; }
         public virtual ReadTicket ReadTicket { get; set; }
     }
 }

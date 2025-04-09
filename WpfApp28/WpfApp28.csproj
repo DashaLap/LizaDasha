@@ -44,8 +44,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +66,67 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NewFolder1\Author.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Book_1.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Connection2.cs" />
+    <Compile Include="NewFolder1\Create_Build.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Employee.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\History_Reader_Ticket.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Janr.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Model1f.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1f.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Model1f.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Model1f.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1f.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Post.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Reader.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\ReadTicket.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\sysdiagrams.cs">
+      <DependentUpon>Model1f.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PageS\Book.xaml.cs">
+      <DependentUpon>Book.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditReadersBtn.xaml.cs">
+      <DependentUpon>EditReadersBtn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReadersListWindow.xaml.cs">
+      <DependentUpon>ReadersListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddReaderTicketWindow.xaml.cs">
+      <DependentUpon>AddReaderTicketWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MenuEmploeesWindow.xaml.cs">
       <DependentUpon>MenuEmploeesWindow.xaml</DependentUpon>
     </Compile>
@@ -87,7 +150,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageS\Book.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageS\ReaderPages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditReadersBtn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ReadersListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddReaderTicketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,51 +180,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewFolder1\132.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>132.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\132.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\132.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>132.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Author.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Book.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Create_Build.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Employee.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\History_Reader_Ticket.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Janr.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Post.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\Reader.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\ReadTicket.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewFolder1\sysdiagrams.cs">
-      <DependentUpon>132.tt</DependentUpon>
-    </Compile>
     <Compile Include="PageS\AutorizationChitatel.xaml.cs">
       <DependentUpon>AutorizationChitatel.xaml</DependentUpon>
     </Compile>
@@ -168,12 +206,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="NewFolder1\132.edmx">
+    <EntityDeploy Include="NewFolder1\Model1f.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>132.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1f.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="NewFolder1\132.edmx.diagram">
-      <DependentUpon>132.edmx</DependentUpon>
+    <None Include="NewFolder1\Model1f.edmx.diagram">
+      <DependentUpon>Model1f.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -185,22 +223,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NewFolder1\132.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>132.Context.cs</LastGenOutput>
-      <DependentUpon>132.edmx</DependentUpon>
-    </Content>
-    <Content Include="NewFolder1\132.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>132.edmx</DependentUpon>
-      <LastGenOutput>132.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resourse\ttt.jpg" />
     <Resource Include="Resourse\HIU.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="NewFolder1\Model1f.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1f.edmx</DependentUpon>
+      <LastGenOutput>Model1f.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewFolder1\Model1f.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1f.edmx</DependentUpon>
+      <LastGenOutput>Model1f.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

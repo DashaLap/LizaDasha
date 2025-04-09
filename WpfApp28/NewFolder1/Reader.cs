@@ -26,6 +26,7 @@ namespace WpfApp28.NewFolder1
         public string Middle_name { get; set; }
         public Nullable<System.DateTime> Birthdate { get; set; }
         public string Phone { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReadTicket> ReadTicket { get; set; }

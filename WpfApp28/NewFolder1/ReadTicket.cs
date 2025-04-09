@@ -24,6 +24,7 @@ namespace WpfApp28.NewFolder1
         public Nullable<int> ID_Employee { get; set; }
         public Nullable<int> ID_Reader { get; set; }
         public Nullable<System.DateTime> Date_Registr { get; set; }
+        public Nullable<bool> isDelete { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

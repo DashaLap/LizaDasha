@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище Bibl_dsrymarModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Bibl_dsrymarModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,12 +13,13 @@
           <Property Name="Surname" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Middle_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
-        <EntityType Name="Book">
+        <EntityType Name="Book_1">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_author" Type="int" />
           <Property Name="Year_make" Type="int" />
@@ -46,6 +47,7 @@
           <Property Name="Birthdate" Type="date" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="History_Reader_Ticket">
           <Key>
@@ -57,6 +59,7 @@
           <Property Name="Date_Start" Type="date" />
           <Property Name="Date_End" Type="int" />
           <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="Janr">
           <Key>
@@ -82,6 +85,7 @@
           <Property Name="Middle_name" Type="nvarchar" MaxLength="50" />
           <Property Name="Birthdate" Type="date" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="ReadTicket">
           <Key>
@@ -91,6 +95,7 @@
           <Property Name="ID_Employee" Type="int" />
           <Property Name="ID_Reader" Type="int" />
           <Property Name="Date_Registr" Type="date" />
+          <Property Name="isDelete" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -102,38 +107,38 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_Book_Author">
+        <Association Name="FK_Book_1_Author">
           <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_author" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Create_Build">
+        <Association Name="FK_Book_1_Create_Build">
           <End Role="Create_Build" Type="Self.Create_Build" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Create_Build">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_create_build" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Janr">
+        <Association Name="FK_Book_1_Janr">
           <End Role="Janr" Type="Self.Janr" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Janr">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_janr" />
             </Dependent>
           </ReferentialConstraint>
@@ -150,11 +155,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_History_Reader_Ticket_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+        <Association Name="FK_History_Reader_Ticket_Book_1">
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="0..1" />
           <End Role="History_Reader_Ticket" Type="Self.History_Reader_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Book">
+            <Principal Role="Book_1">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="History_Reader_Ticket">
@@ -200,7 +205,7 @@
         </Association>
         <EntityContainer Name="Хранилище Bibl_dsrymarModelContainer">
           <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book_1" EntityType="Self.Book_1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Create_Build" EntityType="Self.Create_Build" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="History_Reader_Ticket" EntityType="Self.History_Reader_Ticket" Schema="dbo" store:Type="Tables" />
@@ -209,24 +214,24 @@
           <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReadTicket" EntityType="Self.ReadTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
+          <AssociationSet Name="FK_Book_1_Author" Association="Self.FK_Book_1_Author">
             <End Role="Author" EntitySet="Author" />
-            <End Role="Book" EntitySet="Book" />
+            <End Role="Book_1" EntitySet="Book_1" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Create_Build" Association="Self.FK_Book_Create_Build">
+          <AssociationSet Name="FK_Book_1_Create_Build" Association="Self.FK_Book_1_Create_Build">
             <End Role="Create_Build" EntitySet="Create_Build" />
-            <End Role="Book" EntitySet="Book" />
+            <End Role="Book_1" EntitySet="Book_1" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Janr" Association="Self.FK_Book_Janr">
+          <AssociationSet Name="FK_Book_1_Janr" Association="Self.FK_Book_1_Janr">
             <End Role="Janr" EntitySet="Janr" />
-            <End Role="Book" EntitySet="Book" />
+            <End Role="Book_1" EntitySet="Book_1" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK_History_Reader_Ticket_Book" Association="Self.FK_History_Reader_Ticket_Book">
-            <End Role="Book" EntitySet="Book" />
+          <AssociationSet Name="FK_History_Reader_Ticket_Book_1" Association="Self.FK_History_Reader_Ticket_Book_1">
+            <End Role="Book_1" EntitySet="Book_1" />
             <End Role="History_Reader_Ticket" EntitySet="History_Reader_Ticket" />
           </AssociationSet>
           <AssociationSet Name="FK_History_Reader_Ticket_ReadTicket" Association="Self.FK_History_Reader_Ticket_ReadTicket">
@@ -242,64 +247,11 @@
             <End Role="ReadTicket" EntitySet="ReadTicket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Bibl_dsrymarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityContainer Name="Bibl_dsrymarEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Author" EntityType="Bibl_dsrymarModel.Author" />
-          <EntitySet Name="Book" EntityType="Bibl_dsrymarModel.Book" />
-          <EntitySet Name="Create_Build" EntityType="Bibl_dsrymarModel.Create_Build" />
-          <EntitySet Name="Employee" EntityType="Bibl_dsrymarModel.Employee" />
-          <EntitySet Name="History_Reader_Ticket" EntityType="Bibl_dsrymarModel.History_Reader_Ticket" />
-          <EntitySet Name="Janr" EntityType="Bibl_dsrymarModel.Janr" />
-          <EntitySet Name="Post" EntityType="Bibl_dsrymarModel.Post" />
-          <EntitySet Name="Reader" EntityType="Bibl_dsrymarModel.Reader" />
-          <EntitySet Name="ReadTicket" EntityType="Bibl_dsrymarModel.ReadTicket" />
-          <AssociationSet Name="FK_Book_Author" Association="Bibl_dsrymarModel.FK_Book_Author">
-            <End Role="Author" EntitySet="Author" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_Create_Build" Association="Bibl_dsrymarModel.FK_Book_Create_Build">
-            <End Role="Create_Build" EntitySet="Create_Build" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_Janr" Association="Bibl_dsrymarModel.FK_Book_Janr">
-            <End Role="Janr" EntitySet="Janr" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Reader_Ticket_Book" Association="Bibl_dsrymarModel.FK_History_Reader_Ticket_Book">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="History_Reader_Ticket" EntitySet="History_Reader_Ticket" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Post" Association="Bibl_dsrymarModel.FK_Employee_Post">
-            <End Role="Post" EntitySet="Post" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReadTicket_Employee" Association="Bibl_dsrymarModel.FK_ReadTicket_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="ReadTicket" EntitySet="ReadTicket" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Reader_Ticket_ReadTicket" Association="Bibl_dsrymarModel.FK_History_Reader_Ticket_ReadTicket">
-            <End Role="ReadTicket" EntitySet="ReadTicket" />
-            <End Role="History_Reader_Ticket" EntitySet="History_Reader_Ticket" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReadTicket_Reader" Association="Bibl_dsrymarModel.FK_ReadTicket_Reader">
-            <End Role="Reader" EntitySet="Reader" />
-            <End Role="ReadTicket" EntitySet="ReadTicket" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
@@ -308,23 +260,24 @@
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Book" Relationship="Bibl_dsrymarModel.FK_Book_Author" FromRole="Author" ToRole="Book" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="Book_1" Relationship="Self.FK_Book_1_Author" FromRole="Author" ToRole="Book_1" />
         </EntityType>
-        <EntityType Name="Book">
+        <EntityType Name="Book_1">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_author" Type="Int32" />
           <Property Name="Year_make" Type="Int32" />
           <Property Name="ID_create_build" Type="Int32" />
           <Property Name="ID_janr" Type="Int32" />
           <Property Name="Count_Page" Type="Int32" />
-          <NavigationProperty Name="Author" Relationship="Bibl_dsrymarModel.FK_Book_Author" FromRole="Book" ToRole="Author" />
-          <NavigationProperty Name="Create_Build" Relationship="Bibl_dsrymarModel.FK_Book_Create_Build" FromRole="Book" ToRole="Create_Build" />
-          <NavigationProperty Name="Janr" Relationship="Bibl_dsrymarModel.FK_Book_Janr" FromRole="Book" ToRole="Janr" />
-          <NavigationProperty Name="History_Reader_Ticket" Relationship="Bibl_dsrymarModel.FK_History_Reader_Ticket_Book" FromRole="Book" ToRole="History_Reader_Ticket" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Book_1_Author" FromRole="Book_1" ToRole="Author" />
+          <NavigationProperty Name="Create_Build" Relationship="Self.FK_Book_1_Create_Build" FromRole="Book_1" ToRole="Create_Build" />
+          <NavigationProperty Name="Janr" Relationship="Self.FK_Book_1_Janr" FromRole="Book_1" ToRole="Janr" />
+          <NavigationProperty Name="History_Reader_Ticket" Relationship="Self.FK_History_Reader_Ticket_Book_1" FromRole="Book_1" ToRole="History_Reader_Ticket" />
         </EntityType>
         <EntityType Name="Create_Build">
           <Key>
@@ -332,7 +285,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Book" Relationship="Bibl_dsrymarModel.FK_Book_Create_Build" FromRole="Create_Build" ToRole="Book" />
+          <NavigationProperty Name="Book_1" Relationship="Self.FK_Book_1_Create_Build" FromRole="Create_Build" ToRole="Book_1" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -347,8 +300,9 @@
           <Property Name="Birthdate" Type="DateTime" Precision="0" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Post" Relationship="Bibl_dsrymarModel.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
-          <NavigationProperty Name="ReadTicket" Relationship="Bibl_dsrymarModel.FK_ReadTicket_Employee" FromRole="Employee" ToRole="ReadTicket" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+          <NavigationProperty Name="ReadTicket" Relationship="Self.FK_ReadTicket_Employee" FromRole="Employee" ToRole="ReadTicket" />
         </EntityType>
         <EntityType Name="History_Reader_Ticket">
           <Key>
@@ -360,8 +314,9 @@
           <Property Name="Date_Start" Type="DateTime" Precision="0" />
           <Property Name="Date_End" Type="Int32" />
           <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Book" Relationship="Bibl_dsrymarModel.FK_History_Reader_Ticket_Book" FromRole="History_Reader_Ticket" ToRole="Book" />
-          <NavigationProperty Name="ReadTicket" Relationship="Bibl_dsrymarModel.FK_History_Reader_Ticket_ReadTicket" FromRole="History_Reader_Ticket" ToRole="ReadTicket" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="Book_1" Relationship="Self.FK_History_Reader_Ticket_Book_1" FromRole="History_Reader_Ticket" ToRole="Book_1" />
+          <NavigationProperty Name="ReadTicket" Relationship="Self.FK_History_Reader_Ticket_ReadTicket" FromRole="History_Reader_Ticket" ToRole="ReadTicket" />
         </EntityType>
         <EntityType Name="Janr">
           <Key>
@@ -369,7 +324,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Book" Relationship="Bibl_dsrymarModel.FK_Book_Janr" FromRole="Janr" ToRole="Book" />
+          <NavigationProperty Name="Book_1" Relationship="Self.FK_Book_1_Janr" FromRole="Janr" ToRole="Book_1" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -377,7 +332,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="Bibl_dsrymarModel.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Reader">
           <Key>
@@ -389,7 +344,8 @@
           <Property Name="Middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Birthdate" Type="DateTime" Precision="0" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ReadTicket" Relationship="Bibl_dsrymarModel.FK_ReadTicket_Reader" FromRole="Reader" ToRole="ReadTicket" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="ReadTicket" Relationship="Self.FK_ReadTicket_Reader" FromRole="Reader" ToRole="ReadTicket" />
         </EntityType>
         <EntityType Name="ReadTicket">
           <Key>
@@ -399,51 +355,62 @@
           <Property Name="ID_Employee" Type="Int32" />
           <Property Name="ID_Reader" Type="Int32" />
           <Property Name="Date_Registr" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employee" Relationship="Bibl_dsrymarModel.FK_ReadTicket_Employee" FromRole="ReadTicket" ToRole="Employee" />
-          <NavigationProperty Name="History_Reader_Ticket" Relationship="Bibl_dsrymarModel.FK_History_Reader_Ticket_ReadTicket" FromRole="ReadTicket" ToRole="History_Reader_Ticket" />
-          <NavigationProperty Name="Reader" Relationship="Bibl_dsrymarModel.FK_ReadTicket_Reader" FromRole="ReadTicket" ToRole="Reader" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_ReadTicket_Employee" FromRole="ReadTicket" ToRole="Employee" />
+          <NavigationProperty Name="History_Reader_Ticket" Relationship="Self.FK_History_Reader_Ticket_ReadTicket" FromRole="ReadTicket" ToRole="History_Reader_Ticket" />
+          <NavigationProperty Name="Reader" Relationship="Self.FK_ReadTicket_Reader" FromRole="ReadTicket" ToRole="Reader" />
         </EntityType>
-        <Association Name="FK_Book_Author">
-          <End Type="Bibl_dsrymarModel.Author" Role="Author" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.Book" Role="Book" Multiplicity="*" />
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Book_1_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_author" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Create_Build">
-          <End Type="Bibl_dsrymarModel.Create_Build" Role="Create_Build" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.Book" Role="Book" Multiplicity="*" />
+        <Association Name="FK_Book_1_Create_Build">
+          <End Role="Create_Build" Type="Self.Create_Build" Multiplicity="0..1" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Create_Build">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_create_build" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Janr">
-          <End Type="Bibl_dsrymarModel.Janr" Role="Janr" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.Book" Role="Book" Multiplicity="*" />
+        <Association Name="FK_Book_1_Janr">
+          <End Role="Janr" Type="Self.Janr" Multiplicity="0..1" />
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Janr">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Book">
+            <Dependent Role="Book_1">
               <PropertyRef Name="ID_janr" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_History_Reader_Ticket_Book">
-          <End Type="Bibl_dsrymarModel.Book" Role="Book" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.History_Reader_Ticket" Role="History_Reader_Ticket" Multiplicity="*" />
+        <Association Name="FK_History_Reader_Ticket_Book_1">
+          <End Role="Book_1" Type="Self.Book_1" Multiplicity="0..1" />
+          <End Role="History_Reader_Ticket" Type="Self.History_Reader_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Book">
+            <Principal Role="Book_1">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="History_Reader_Ticket">
@@ -452,8 +419,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Post">
-          <End Type="Bibl_dsrymarModel.Post" Role="Post" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Post">
               <PropertyRef Name="ID" />
@@ -464,8 +431,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReadTicket_Employee">
-          <End Type="Bibl_dsrymarModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.ReadTicket" Role="ReadTicket" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ReadTicket" Type="Self.ReadTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="ID" />
@@ -476,8 +443,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Reader_Ticket_ReadTicket">
-          <End Type="Bibl_dsrymarModel.ReadTicket" Role="ReadTicket" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.History_Reader_Ticket" Role="History_Reader_Ticket" Multiplicity="*" />
+          <End Role="ReadTicket" Type="Self.ReadTicket" Multiplicity="0..1" />
+          <End Role="History_Reader_Ticket" Type="Self.History_Reader_Ticket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ReadTicket">
               <PropertyRef Name="ID" />
@@ -488,8 +455,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReadTicket_Reader">
-          <End Type="Bibl_dsrymarModel.Reader" Role="Reader" Multiplicity="0..1" />
-          <End Type="Bibl_dsrymarModel.ReadTicket" Role="ReadTicket" Multiplicity="*" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="0..1" />
+          <End Role="ReadTicket" Type="Self.ReadTicket" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Reader">
               <PropertyRef Name="ID" />
@@ -499,12 +466,157 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="Bibl_dsrymarEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Author" EntityType="Self.Author" />
+          <EntitySet Name="Book_1" EntityType="Self.Book_1" />
+          <EntitySet Name="Create_Build" EntityType="Self.Create_Build" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="History_Reader_Ticket" EntityType="Self.History_Reader_Ticket" />
+          <EntitySet Name="Janr" EntityType="Self.Janr" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Reader" EntityType="Self.Reader" />
+          <EntitySet Name="ReadTicket" EntityType="Self.ReadTicket" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Book_1_Author" Association="Self.FK_Book_1_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Book_1" EntitySet="Book_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_1_Create_Build" Association="Self.FK_Book_1_Create_Build">
+            <End Role="Create_Build" EntitySet="Create_Build" />
+            <End Role="Book_1" EntitySet="Book_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_1_Janr" Association="Self.FK_Book_1_Janr">
+            <End Role="Janr" EntitySet="Janr" />
+            <End Role="Book_1" EntitySet="Book_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Reader_Ticket_Book_1" Association="Self.FK_History_Reader_Ticket_Book_1">
+            <End Role="Book_1" EntitySet="Book_1" />
+            <End Role="History_Reader_Ticket" EntitySet="History_Reader_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReadTicket_Employee" Association="Self.FK_ReadTicket_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ReadTicket" EntitySet="ReadTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Reader_Ticket_ReadTicket" Association="Self.FK_History_Reader_Ticket_ReadTicket">
+            <End Role="ReadTicket" EntitySet="ReadTicket" />
+            <End Role="History_Reader_Ticket" EntitySet="History_Reader_Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReadTicket_Reader" Association="Self.FK_ReadTicket_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="ReadTicket" EntitySet="ReadTicket" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Bibl_dsrymarModelContainer" CdmEntityContainer="Bibl_dsrymarEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Bibl_dsrymarModelContainer" CdmEntityContainer="Bibl_dsrymarEntities3">
+          <EntitySetMapping Name="Author">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book_1">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Book_1">
+              <MappingFragment StoreEntitySet="Book_1">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_author" ColumnName="ID_author" />
+                <ScalarProperty Name="Year_make" ColumnName="Year_make" />
+                <ScalarProperty Name="ID_create_build" ColumnName="ID_create_build" />
+                <ScalarProperty Name="ID_janr" ColumnName="ID_janr" />
+                <ScalarProperty Name="Count_Page" ColumnName="Count_Page" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Create_Build">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Create_Build">
+              <MappingFragment StoreEntitySet="Create_Build">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="ID_post" ColumnName="ID_post" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Reader_Ticket">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.History_Reader_Ticket">
+              <MappingFragment StoreEntitySet="History_Reader_Ticket">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Ticket" ColumnName="ID_Ticket" />
+                <ScalarProperty Name="ID_Book" ColumnName="ID_Book" />
+                <ScalarProperty Name="Date_Start" ColumnName="Date_Start" />
+                <ScalarProperty Name="Date_End" ColumnName="Date_End" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Janr">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Janr">
+              <MappingFragment StoreEntitySet="Janr">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reader">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Reader">
+              <MappingFragment StoreEntitySet="Reader">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReadTicket">
+            <EntityTypeMapping TypeName="Bibl_dsrymarModel.ReadTicket">
+              <MappingFragment StoreEntitySet="ReadTicket">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
+                <ScalarProperty Name="ID_Reader" ColumnName="ID_Reader" />
+                <ScalarProperty Name="Date_Registr" ColumnName="Date_Registr" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="Bibl_dsrymarModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -513,102 +625,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Author">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Author">
-              <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Book">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Book">
-              <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="Count_Page" ColumnName="Count_Page" />
-                <ScalarProperty Name="ID_janr" ColumnName="ID_janr" />
-                <ScalarProperty Name="ID_create_build" ColumnName="ID_create_build" />
-                <ScalarProperty Name="Year_make" ColumnName="Year_make" />
-                <ScalarProperty Name="ID_author" ColumnName="ID_author" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Create_Build">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Create_Build">
-              <MappingFragment StoreEntitySet="Create_Build">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ID_post" ColumnName="ID_post" />
-                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="History_Reader_Ticket">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.History_Reader_Ticket">
-              <MappingFragment StoreEntitySet="History_Reader_Ticket">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Date_End" ColumnName="Date_End" />
-                <ScalarProperty Name="Date_Start" ColumnName="Date_Start" />
-                <ScalarProperty Name="ID_Book" ColumnName="ID_Book" />
-                <ScalarProperty Name="ID_Ticket" ColumnName="ID_Ticket" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Janr">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Janr">
-              <MappingFragment StoreEntitySet="Janr">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Post">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Post">
-              <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reader">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.Reader">
-              <MappingFragment StoreEntitySet="Reader">
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
-                <ScalarProperty Name="Middle_name" ColumnName="Middle_name" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReadTicket">
-            <EntityTypeMapping TypeName="Bibl_dsrymarModel.ReadTicket">
-              <MappingFragment StoreEntitySet="ReadTicket">
-                <ScalarProperty Name="Date_Registr" ColumnName="Date_Registr" />
-                <ScalarProperty Name="ID_Reader" ColumnName="ID_Reader" />
-                <ScalarProperty Name="ID_Employee" ColumnName="ID_Employee" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

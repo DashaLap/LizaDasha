@@ -29,6 +29,6 @@
         <TextBlock Text="пароль"  Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Height="50" VerticalAlignment="Top" FontSize="23" Margin="15 0 0 20" HorizontalAlignment="Center"/>
         <TextBox x:Name="txbPassword" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Width="250" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Padding="5" FontFamily="Times New Roman"/>
         <Button x:Name="LoginBtn" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Height="60" Width="180" Content="Войти" Click="LoginBtn_Click"/>
-        <Button x:Name="btnLoginReader" Grid.Column="5" Grid.Row="3" Height="60" Width="180" FontSize="15" Content="Вход для читателя" Click="btnLoginReader_Click"/>
+        <Button x:Name="btnLoginReader" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Height="60" Width="150" FontSize="15" Content="Вход для читателя" Click="btnLoginReader_Click"/>
     </Grid>
 </Page>

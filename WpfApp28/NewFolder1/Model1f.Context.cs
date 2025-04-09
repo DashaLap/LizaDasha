@@ -13,10 +13,10 @@ namespace WpfApp28.NewFolder1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Bibl_dsrymarEntities : DbContext
+    public partial class Bibl_dsrymarEntities3 : DbContext
     {
-        public Bibl_dsrymarEntities()
-            : base("name=Bibl_dsrymarEntities")
+        public Bibl_dsrymarEntities3()
+            : base("name=Bibl_dsrymarEntities3")
         {
         }
     
@@ -25,9 +25,8 @@ namespace WpfApp28.NewFolder1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Author> Author { get; set; }
-        public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<Book_1> Book_1 { get; set; }
         public virtual DbSet<Create_Build> Create_Build { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<History_Reader_Ticket> History_Reader_Ticket { get; set; }
@@ -35,5 +34,6 @@ namespace WpfApp28.NewFolder1
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Reader> Reader { get; set; }
         public virtual DbSet<ReadTicket> ReadTicket { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
